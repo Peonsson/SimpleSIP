@@ -6,10 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by Johan Pettersson and Robin Veteläinen on 2015-10-07 13:06.
- * At Kungliga Tekniska Högskolan (KTH) in Sweden.
- * Contact: johanp7@kth.se
+ * Created by Peonsson & roppe546 on 2015-10-08 16:18.
  */
+
 public class Peer {
 
     public static void main(String[] args) {
