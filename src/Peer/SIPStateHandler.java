@@ -23,4 +23,48 @@ public class SIPStateHandler {
       currentState = currentState.sendInvite();
    }
 
+    public void invokeGotInvite() {
+        currentState = currentState.gotInvite();
+    }
+
+    public void invokeSendBye() {
+        currentState = currentState.sendBye();
+    }
+
+    public void invokeGotBye() {
+        currentState = currentState.gotBye();
+    }
+
+    public void invokeTryConnect() {
+        currentState = currentState.tryConnect();
+    }
+
+    public void invokeFailedConnecting() {
+        currentState = currentState.failedConnecting();
+    }
+
+    public void invokeFailedWaitAck() {
+        currentState = currentState.failedWaitAck();
+    }
+
+    public void invokeGotAck() {
+        currentState = currentState.gotAck();
+    }
+
+    public void invokeGotBusy() {
+        currentState = currentState.gotBusy();
+    }
+
+    public void invokeSendAck() {
+        currentState = currentState.sendAck();
+    }
+
+    public void invokeGotOk() {
+        currentState = currentState.gotOk();
+    }
+
+    public void invokeNoResponse() {
+        currentState = currentState.noResponse();
+    }
+
 }
