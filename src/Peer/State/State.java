@@ -8,27 +8,56 @@ package Peer.State;
 public abstract class State {
     public abstract String getName();
 
-    public State NotConnected() {
+    public State sendBye() {
         return this;
     }
 
-    public State Connecting() {
+    //TODO: change this name.
+    public State gotBye() {
         return this;
     }
 
-    public State WaitOkDisconnect() {
+    public State tryConnect() {
         return this;
     }
 
-    public State WaitOkConnect() {
+    //TODO: Change name of this method.
+    public State failedConnecting() {
         return this;
     }
 
-    public State WaitAck() {
+    public State sendInvite() {
         return this;
     }
 
-    public State Connected() {
+    public State gotInvite() {
+        return this;
+    }
+
+    //TODO: change this name.
+    public State failedWaitAck() {
+        return this;
+    }
+
+    //TODO: change this name.
+    public State gotAck() {
+        return this;
+    }
+
+    //TODO: change this name.
+    public State gotBusy() {
+        return this;
+    }
+
+    public State sendAck() {
+        return this;
+    }
+
+    public State gotOk() {
+        return this;
+    }
+
+    public State noResponse() {
         return this;
     }
 }

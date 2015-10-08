@@ -12,21 +12,9 @@ import java.net.Socket;
  */
 public class Peer {
 
-    private final static int SERVER_PORT = 5060;
-
     public static void main(String[] args) {
 
-        try {
-            ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
 
-            Socket clientSocket = serverSocket.accept();
-
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-
-
-        } catch (IOException e) {
-
-        }
 
     }
 
