@@ -7,23 +7,23 @@ import Peer.State.State;
  * Created by Peonsson & roppe546 on 2015-10-08 16:18.
  */
 
-public class SIPStateHandler {
+public class StateHandler {
 
-   private State currentState;
+    private State currentState;
     private boolean busy;
 
-   public SIPStateHandler(boolean busy) {
-      currentState = new NotConnected();
-       this.busy = busy;
-   }
+    public StateHandler(boolean busy) {
+        currentState = new NotConnected();
+        this.busy = busy;
+    }
 
-   public String getState() {
-      return currentState.getName();
-   }
+    public String getState() {
+        return currentState.getName();
+    }
 
-   public void invokeSendInvite() {
-      currentState = currentState.sendInvite();
-   }
+    public void invokeSendInvite() {
+        currentState = currentState.sendInvite();
+    }
 
     public void invokeGotInvite() {
         currentState = currentState.gotInvite();
