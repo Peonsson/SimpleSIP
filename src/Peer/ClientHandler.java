@@ -44,7 +44,7 @@ public class ClientHandler extends Thread {
             String arg = scan.nextLine();
             String[] parts = arg.split(" ");
 
-            if(busy == true) {
+            if (busy == true) {
                 System.err.println("Can't initiate a call while calling or talking with someone!");
                 continue;
             }
@@ -62,8 +62,7 @@ public class ClientHandler extends Thread {
 
                 try {
 
-                    InetAddress host = InetAddress.getLocalHost();
-                    host = InetAddress.getByName(ip_to);
+                    InetAddress host = InetAddress.getByName(ip_to);
                     socket = new Socket(host, 5060);
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
@@ -73,11 +72,11 @@ public class ClientHandler extends Thread {
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String response = in.readLine();
 
-                    if(response.equals("OK")) {
+                    if (response.equals("OK")) {
                         out.println("ACK");
                         System.out.println("we are now connected, yo");
                         handler.invokeSendAck();
-                    } else if(response.equals("BUSY")) {
+                    } else if (response.equals("BUSY")) {
                         System.out.println("got busy");
                         handler.invokeGotBusy();
                     }

@@ -29,7 +29,7 @@ public class Peer {
 
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String response = in.readLine();
-            if(response.equals("INVITE")) {
+            if (response.equals("INVITE")) {
 
                 handler.invokeGotInvite(); // goes from notConnected to connecting
 
@@ -40,7 +40,7 @@ public class Peer {
 
                 handler.invokeTryConnect(); // goes from connecting to wait ack
                 response = in.readLine();
-                if(response.equals("ACK")) {
+                if (response.equals("ACK")) {
                     handler.invokeGotAck(); // goes from wait ack to connected
                     //TODO: implement audio shit.
                     out.println("we are not connected, yo123");
@@ -50,16 +50,6 @@ public class Peer {
             } else {
                 //TODO: implement if we get something else then invite
             }
-
-
-
-
-
-
-
-
-
-
 
 
         } catch (IOException e) {
