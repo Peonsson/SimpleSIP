@@ -10,9 +10,11 @@ import Peer.State.State;
 public class SIPStateHandler {
 
    private State currentState;
+    private boolean busy;
 
-   public SIPStateHandler() {
+   public SIPStateHandler(boolean busy) {
       currentState = new NotConnected();
+       this.busy = busy;
    }
 
    public String getState() {
@@ -66,5 +68,4 @@ public class SIPStateHandler {
     public void invokeNoResponse() {
         currentState = currentState.noResponse();
     }
-
 }
