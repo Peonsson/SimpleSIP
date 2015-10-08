@@ -26,10 +26,10 @@ public class Peer {
         try {
             ServerSocket listenSocket = new ServerSocket(SERVER_PORT);
             Socket clientSocket = listenSocket.accept();
-
+            //TODO: implement busy logic - user can't take calls and be in a call at the same time.
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String response = in.readLine();
-            if (response.equals("INVITE")) {
+            if (response.equals("INVITE") ) {
 
                 handler.invokeGotInvite(); // goes from notConnected to connecting
 
