@@ -26,26 +26,35 @@ public class Peer {
         try {
             ServerSocket listenSocket = new ServerSocket(SERVER_PORT);
             Socket clientSocket = listenSocket.accept();
-            handler.invokeGotInvite(); // goes from notConnected to connecting
-
-            //TODO: implement logic for going from connecting to not connected.
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-//            out.println("TRYING");
-//            out.println("RINGING");
-            out.println("OK");
-
-            handler.invokeTryConnect(); // goes from connecting to wait ack
 
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
             String response = in.readLine();
-            if(response.equals("ACK")) {
-                handler.invokeGotAck(); // goes from wait ack to connected
-                //TODO: implement audio shit.
-                out.println("we are not connected, yo");
+            if(response.equals("INVITE")) {
 
+                handler.invokeGotInvite(); // goes from notConnected to connecting
 
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+//            out.println("TRYING");
+//            out.println("RINGING");
+                out.println("OK");
+
+                handler.invokeTryConnect(); // goes from connecting to wait ack
+                response = in.readLine();
+                if(response.equals("ACK")) {
+                    handler.invokeGotAck(); // goes from wait ack to connected
+                    //TODO: implement audio shit.
+                    out.println("we are not connected, yo123");
+                    System.out.println("GOT HERE!");
+                }
+
+            } else {
+                //TODO: implement if we get something else then invite
             }
+
+
+
+
+
 
 
 
