@@ -10,11 +10,9 @@ import Peer.State.State;
 public class StateHandler {
 
     private State currentState;
-    private boolean busy;
 
-    public StateHandler(boolean busy) {
+    public StateHandler() {
         currentState = new NotConnected();
-        this.busy = busy;
     }
 
     public String getState() {
