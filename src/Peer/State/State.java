@@ -2,6 +2,7 @@ package Peer.State;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+import java.net.Socket;
 
 /**
  * Created by Peonsson & roppe546 on 2015-10-08 16:18.
@@ -28,7 +29,7 @@ public abstract class State {
         return this;
     }
 
-    public State sendInvite(String input) {
+    public State sendInvite(Socket clientSocket) {
         return this;
     }
 

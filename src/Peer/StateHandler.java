@@ -3,6 +3,8 @@ package Peer;
 import Peer.State.NotConnected;
 import Peer.State.State;
 
+import java.net.Socket;
+
 /**
  * Created by Peonsson & roppe546 on 2015-10-08 16:18.
  */
@@ -19,8 +21,8 @@ public class StateHandler {
         return currentState.getName();
     }
 
-    public void invokeSendInvite(String input) {
-        currentState = currentState.sendInvite(input);
+    public void invokeSendInvite(Socket clientSocket) {
+        currentState = currentState.sendInvite(clientSocket);
     }
 
     public void invokeGotInvite() {

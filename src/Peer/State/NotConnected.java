@@ -19,25 +19,25 @@ import java.util.Scanner;
  */
 public class NotConnected extends State {
 
-    private String sip_from;
-    private String sip_to;
-    private String ip_from;
-    private String ip_to;
-    private String voice_port;
-
     @Override
     public String getName() {
         return "NotConnected";
     }
 
-    public State sendInvite(String input) {
-        String[] parts = input.split(" ");
+    public State sendInvite(Socket socket) {
 
-        if (parts.length == 6) {
-            ip_to = parts[3];
-        }
+        try {
+
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+            out.println("INVITE");
+
             return new WaitOkConnect();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new NotConnected();
+        }
     }
 
     public State gotInvite(String input) {
