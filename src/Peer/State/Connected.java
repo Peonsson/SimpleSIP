@@ -10,16 +10,6 @@ import java.net.Socket;
 
 public class Connected extends State {
 
-    private Socket socket;
-    private BufferedReader in;
-    private PrintWriter out;
-
-    public Connected(Socket socket, BufferedReader in, PrintWriter out) {
-        this.socket = socket;
-        this.in = in;
-        this.out = out;
-    }
-
     @Override
     public String getName() {
         return "Connected";

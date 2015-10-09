@@ -10,10 +10,6 @@ import java.net.Socket;
 
 public class WaitAck extends State {
 
-    private Socket socket = null;
-    private BufferedReader in = null;
-    private PrintWriter out = null;
-
     @Override
     public String getName() {
         return "WaitAck";
@@ -26,6 +22,6 @@ public class WaitAck extends State {
 
     //TODO: change this name.
     public State gotAck() {
-        return new Connected(socket, in, out);
+        return new Connected();
     }
 }

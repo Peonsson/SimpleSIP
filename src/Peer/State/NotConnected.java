@@ -25,28 +25,6 @@ public class NotConnected extends State {
     private String ip_to;
     private String voice_port;
 
-    private int SERVER_PORT = 5060;
-
-    /**
-     * Constructor
-     */
-    public NotConnected() {
-
-        new ClientHandler().start();
-
-        try {
-
-            ServerSocket listenSocket = new ServerSocket(SERVER_PORT);
-            Socket clientSocket = listenSocket.accept();
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            String input = in.readLine();
-            gotInvite(input);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public String getName() {
         return "NotConnected";
@@ -58,25 +36,8 @@ public class NotConnected extends State {
         if (parts.length == 6) {
             ip_to = parts[3];
         }
+            return new WaitOkConnect();
 
-        try {
-
-            InetAddress address = InetAddress.getByName(ip_to);
-            Socket socket = new Socket(address, 5060);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
-            out.println("INVITE");
-
-            return new WaitOkConnect(socket, in, out);
-
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public State gotInvite(String input) {
@@ -87,15 +48,5 @@ public class NotConnected extends State {
             return null;
         }
 
-    }
-
-    private class ClientHandler extends Thread {
-
-        @Override
-        public void run() {
-            Scanner scan = new Scanner(System.in);
-            String input = scan.nextLine();
-            sendInvite(input);
-        }
     }
 }

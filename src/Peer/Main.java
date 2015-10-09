@@ -11,6 +11,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        StateHandler handler = new StateHandler();
+        new ClientHandler().start();
+        new StateHandler();
+    }
+
+    private static class ClientHandler extends Thread {
+
+        @Override
+        public void run() {
+            Scanner scan = new Scanner(System.in);
+            String input = scan.nextLine();
+        }
     }
 }
