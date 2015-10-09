@@ -45,8 +45,7 @@ public class NotConnected extends State {
         if (input.equals("INVITE")) {
             return new Connecting();
         } else {
-            return null;
+            return new NotConnected();
         }
-
     }
 }

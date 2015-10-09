@@ -25,8 +25,8 @@ public class StateHandler {
         currentState = currentState.sendInvite(clientSocket);
     }
 
-    public void invokeGotInvite() {
-        currentState = currentState.gotInvite();
+    public void invokeGotInvite(String input) {
+        currentState = currentState.gotInvite(input);
     }
 
     public void invokeSendBye() {

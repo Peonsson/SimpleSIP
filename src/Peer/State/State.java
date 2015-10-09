@@ -33,7 +33,7 @@ public abstract class State {
         return this;
     }
 
-    public State gotInvite() {
+    public State gotInvite(String input) {
         return this;
     }
 

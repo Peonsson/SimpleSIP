@@ -1,7 +1,9 @@
 package Peer;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -16,11 +18,40 @@ import java.util.Scanner;
 public class Main {
 
     private static StateHandler handler;
+    private static final int SERVER_PORT = 5060;
 
     public static void main(String[] args) {
+
         new ClientHandler();
         handler = new StateHandler();
+
+        try {
+            ServerSocket listenSocket = new ServerSocket(SERVER_PORT);
+            Socket clientSocket = listenSocket.accept();
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            String input = in.readLine();
+            handler.invokeGotInvite(input);
+
+            if(handler.getState().equals("Connecting")) {
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
+
+
+
+
+
+
+
+
+
+
 
     private static class ClientHandler extends Thread {
 
