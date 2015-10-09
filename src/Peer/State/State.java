@@ -1,5 +1,8 @@
 package Peer.State;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
 /**
  * Created by Peonsson & roppe546 on 2015-10-08 16:18.
  */
@@ -25,7 +28,7 @@ public abstract class State {
         return this;
     }
 
-    public State sendInvite() {
+    public State sendInvite(String input) {
         return this;
     }
 
@@ -59,4 +62,6 @@ public abstract class State {
     public State noResponse() {
         return this;
     }
+
+
 }

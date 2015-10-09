@@ -21,8 +21,8 @@ public class StateHandler {
         return currentState.getName();
     }
 
-    public void invokeSendInvite() {
-        currentState = currentState.sendInvite();
+    public void invokeSendInvite(String input) {
+        currentState = currentState.sendInvite(input);
     }
 
     public void invokeGotInvite() {
