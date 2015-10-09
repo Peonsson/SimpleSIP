@@ -3,6 +3,8 @@ package Peer;
 import Peer.State.NotConnected;
 import Peer.State.State;
 
+import java.net.ServerSocket;
+
 /**
  * Created by Peonsson & roppe546 on 2015-10-08 16:18.
  */
@@ -11,8 +13,8 @@ public class StateHandler {
 
     private State currentState;
 
-    public StateHandler() {
-        currentState = new NotConnected();
+    public StateHandler(ServerSocket listenSocket) {
+        currentState = new NotConnected(listenSocket);
     }
 
     public String getState() {
