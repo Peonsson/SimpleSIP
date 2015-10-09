@@ -10,21 +10,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static boolean busy = false;
-    private static int SERVER_PORT = 5060;
-
     public static void main(String[] args) {
-        try {
-            ServerSocket listenSocket = new ServerSocket(SERVER_PORT);
-            StateHandler handler = new StateHandler(listenSocket);
-
-            Scanner scan = new Scanner(System.in);
-            String input = scan.nextLine();
-
-            handler.invokeSendInvite(input);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        StateHandler handler = new StateHandler();
     }
 }
