@@ -13,8 +13,8 @@ public class StateHandler {
 
     private State currentState;
 
-    public StateHandler(ServerSocket listenSocket) {
-        currentState = new NotConnected(listenSocket);
+    public StateHandler() {
+        currentState = new NotConnected();
     }
 
     public String getState() {

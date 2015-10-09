@@ -12,26 +12,39 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 /**
  * State NotConnected can go to Connecting or WaitOk.
  */
 public class NotConnected extends State {
 
-    private Socket socket;
     private String sip_from;
     private String sip_to;
     private String ip_from;
     private String ip_to;
     private String voice_port;
 
-    private ServerSocket listenSocket;
+    private int SERVER_PORT = 5060;
 
     /**
      * Constructor
      */
-    public NotConnected(ServerSocket listenSocket) {
-        this.listenSocket = listenSocket;
+    public NotConnected() {
+
+        new ClientHandler().start();
+
+        try {
+
+            ServerSocket listenSocket = new ServerSocket(SERVER_PORT);
+            Socket clientSocket = listenSocket.accept();
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            String input = in.readLine();
+            gotInvite(input);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -47,26 +60,42 @@ public class NotConnected extends State {
         }
 
         try {
+
             InetAddress address = InetAddress.getByName(ip_to);
-            socket = new Socket(address, 5060);
+            Socket socket = new Socket(address, 5060);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             out.println("INVITE");
-            return new WaitOkConnect(socket, in, out);
-        }
-        catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
 
+            return new WaitOkConnect(socket, in, out);
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
-    public State gotInvite() {
-        return new Connecting();
+    public State gotInvite(String input) {
+
+        if (input.equals("INVITE")) {
+            return new Connecting();
+        } else {
+            return null;
+        }
+
+    }
+
+    private class ClientHandler extends Thread {
+
+        @Override
+        public void run() {
+            Scanner scan = new Scanner(System.in);
+            String input = scan.nextLine();
+            sendInvite(input);
+        }
     }
 }
